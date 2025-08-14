@@ -1,3 +1,6 @@
+package Entities;
+import Enum.Materia;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -18,7 +21,7 @@ public class Boletim {
         boletim.get(materia).add(nota);
     }
     public void imprimirBoletim () {
-        System.out.println("Boletim");
+        System.out.println("Entities.Boletim");
         for (Materia materia : Materia.values()) {
             double mediaAluno = 0;
             for (double nota : boletim.get(materia)) {

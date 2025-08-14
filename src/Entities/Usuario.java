@@ -1,3 +1,5 @@
+package Entities;
+
 public class Usuario {
 
     private static int proxId = 1;

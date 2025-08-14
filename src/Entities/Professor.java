@@ -1,3 +1,6 @@
+package Entities;
+import Enum.Materia;
+
 import java.util.ArrayList;
 
 public class Professor extends Usuario {
@@ -7,4 +10,5 @@ public class Professor extends Usuario {
         super(nome, senha);
         turmas = new ArrayList<>();
     }
+
 }

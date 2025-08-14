@@ -1,4 +1,6 @@
-import java.util.Objects;
+import Entities.GerAlunos;
+import Exceptions.InsercaoInvalidaException;
+
 import java.util.Scanner;
 
 public class Main {
@@ -43,34 +45,34 @@ public class Main {
             }
         }
     }
-    public static void cadastrarAluno () throws Exception {
+    public static void cadastrarAluno () throws InsercaoInvalidaException {
         String nome = SC.next();
         while (true) {
             try {
                 System.out.println("Insira o nome do aluno:");
                 if (nome.isBlank()) {
-                    throw new Exception("Nenhum valor foi inserido");
+                    throw new InsercaoInvalidaException("Valor inserido inválido!");
                 } else {
                     break;
                 }
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
+            } catch (Exception InsercaoInvalidaException) {
+                System.out.println(InsercaoInvalidaException.getMessage());
             }
         }
         GerAlunos.cadastrarAluno(nome);
     }
-    public static void atribuirNotas () throws Exception {
+    public static void atribuirNotas () throws InsercaoInvalidaException {
         int idAluno = SC.nextInt();
         while (true) {
             try {
                 System.out.println("Insira o ID do aluno na qual você deseja adicionar uma nota");
                 if (idAluno < 1) {
-                    throw new Exception("Número inválido, entre 1 e n são aceitos!");
+                    throw new InsercaoInvalidaException("Valor inserido inválido!");
                 } else {
                     break;
                 }
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
+            } catch (Exception InsercaoInvalidaException) {
+                System.out.println(InsercaoInvalidaException.getMessage());
             }
         }
 
