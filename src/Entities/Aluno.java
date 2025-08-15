@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Aluno extends Usuario {
     ArrayList<Turma> turmas;
 
-    Aluno (String nome, String senha) {
+    public Aluno(String nome, String senha) {
         super(nome, senha);
         turmas = new ArrayList<>();
     }

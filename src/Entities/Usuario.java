@@ -19,6 +19,9 @@ public class Usuario {
     public String getNome() {
         return nome;
     }
+    public int getId() {
+        return id;
+    }
     public void setSenha(String senha) {
         this.senha = senha;
     }

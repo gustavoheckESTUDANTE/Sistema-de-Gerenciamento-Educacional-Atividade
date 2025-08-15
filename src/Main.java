@@ -1,13 +1,19 @@
+import Entities.Aluno;
 import Entities.GerAlunos;
+import Entities.Insercao;
+import Entities.Turma;
 import Exceptions.InsercaoInvalidaException;
 
+import java.util.ArrayList;
 import java.util.Scanner;
+import Enum.Materia;
 
 public class Main {
     public static final Scanner SC = new Scanner(System.in);
+
     public static void main(String[] args) throws Exception {
         int escolhaUsuario = SC.nextInt();
-        while(true) {
+        while (true) {
             try {
                 System.out.println("""
                         Bem vindo professor!
@@ -27,54 +33,54 @@ public class Main {
             }
         }
         switch (escolhaUsuario) {
-            case 1 : {
+            case 1: {
                 cadastrarAluno();
                 break;
             }
-            case 2 : {
+            case 2: {
                 break;
             }
-            case 3 : {
+            case 3: {
                 break;
             }
-            case 4 : {
+            case 4: {
                 break;
             }
-            case 5 : {
+            case 5: {
                 break;
             }
         }
     }
-    public static void cadastrarAluno () throws InsercaoInvalidaException {
-        String nome = SC.next();
-        while (true) {
-            try {
-                System.out.println("Insira o nome do aluno:");
-                if (nome.isBlank()) {
-                    throw new InsercaoInvalidaException("Valor inserido inválido!");
-                } else {
-                    break;
-                }
-            } catch (Exception InsercaoInvalidaException) {
-                System.out.println(InsercaoInvalidaException.getMessage());
-            }
-        }
-        GerAlunos.cadastrarAluno(nome);
-    }
-    public static void atribuirNotas () throws InsercaoInvalidaException {
-        int idAluno = SC.nextInt();
-        while (true) {
-            try {
-                System.out.println("Insira o ID do aluno na qual você deseja adicionar uma nota");
-                if (idAluno < 1) {
-                    throw new InsercaoInvalidaException("Valor inserido inválido!");
-                } else {
-                    break;
-                }
-            } catch (Exception InsercaoInvalidaException) {
-                System.out.println(InsercaoInvalidaException.getMessage());
-            }
-        }
 
+    public static void cadastrarAluno() {
+        String nome;
+        do {
+            System.out.println("Insira o nome do aluno:");
+            nome = Insercao.inserString();
+        } while (nome == null);
+        String senha;
+        do {
+            System.out.println("Insira a senha do aluno:");
+            senha = Insercao.inserString();
+        } while (senha == null);
+        GerAlunos.cadastrarAluno(new Aluno(nome, senha));
+    }
+
+    public static void atribuirNotas() {
+        String nome;
+        do {
+            System.out.println("Insira o nome do aluno:");
+            nome = Insercao.inserString();
+        } while (nome == null);
+        int count = 1;
+        ArrayList<Aluno> alunosSelecionados = GerAlunos.buscarAlunoNome(nome);
+        for (Aluno aluno : alunosSelecionados) {
+            System.out.println(count + " - NOME: " + aluno.getNome() + " - ID: " + aluno.getId());
+            count++;
+        }
+        int escolha;
+        do {
+            escolha = (int) Insercao.inserNum(1, alunosSelecionados.size());
+        } while (escolha);
     }
 }
